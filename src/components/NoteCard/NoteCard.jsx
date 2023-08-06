@@ -8,7 +8,7 @@ export function NoteCard({ title, subtitle, content, onClick, onClickDelete }) {
 
   function onClickDelete_(e) {
     onClickDelete();
-    e.Propagation();
+    e.stopPropagation();
   }
 
   return (
