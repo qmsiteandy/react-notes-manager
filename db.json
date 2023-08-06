@@ -1,0 +1,11 @@
+{
+    "notes":[
+        {
+            "id": 1,
+            "title": "mynote",
+            "content": "Hello World",
+            "created_at":"01/01/2022"
+        }
+
+    ]
+}
