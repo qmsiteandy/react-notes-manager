@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export function NoteList() {
-  const noteList = useSelector((store) => store.noteSlice.noteList);
+  const noteList = useSelector((store) => store.NOTE.noteList);
   const navigate = useNavigate();
 
   return (

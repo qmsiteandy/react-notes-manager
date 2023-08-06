@@ -9,8 +9,11 @@ export const noteSlice = createSlice({
     setNoteList: (currentSlice, action) => {
       currentSlice.noteList = action.payload;
     },
+    addNoteToList: (currentSlice, action) => {
+      currentSlice.noteList.push(action.payload);
+    },
   },
 });
 
 export const noteReducer = noteSlice.reducer;
-export const { setNoteList } = noteSlice.actions;
+export const { setNoteList, addNoteToList } = noteSlice.actions;
