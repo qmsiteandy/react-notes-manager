@@ -65,28 +65,42 @@ export function NoteForm({
     );
   };
 
+  const actionIcons = () => {
+    return (
+      <>
+        <div className="col-1 col-sm-1">
+          {onClickEdit && (
+            <PenFill
+              className={`${s.penIcon} ${s.icon}`}
+              onClick={onClickEdit}
+            />
+          )}
+        </div>
+        <div className="col-1 col-sm-1">
+          {onClickDelete && (
+            <TrashFill
+              className={`${s.trashIcon} ${s.icon}`}
+              onClick={onClickDelete}
+            />
+          )}
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className={s.container}>
       <div className="row justify-content-space-between">
-        <div className="col-10">
+        <div className="col-12 col-sm-10">
           <h2 className={s.title}>{title}</h2>
         </div>
-        <div className="col-1">
-          {onClickEdit && (
-            <PenFill className={s.penIcon} onClick={onClickEdit} />
-          )}
-        </div>
-        <div className="col-1">
-          {onClickDelete && (
-            <TrashFill className={s.trashIcon} onClick={onClickDelete} />
-          )}
-        </div>
+        {isEditable ? "" : actionIcons()}
       </div>
       <div className={s.title_input_container}>
         {isEditable ? titleInput() : ""}
       </div>
       <div className={s.content_input_container}>
-        {isEditable ? contentInput() : note.content}
+        {isEditable ? contentInput() : <pre>{note.content}</pre>}
       </div>
       {onSubmit && (
         <ButtonPrimary

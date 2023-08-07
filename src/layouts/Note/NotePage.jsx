@@ -9,7 +9,15 @@ export function NotePage(props) {
   );
   return (
     <>
-      {note && <NoteForm isEditable={false} title={note.title} note={note} />}
+      {note && (
+        <NoteForm
+          isEditable={false}
+          title={note.title}
+          note={note}
+          onClickEdit={() => alert("edit")}
+          onClickDelete={() => alert("delete")}
+        />
+      )}
     </>
   );
 }
