@@ -1,0 +1,17 @@
+.penIcon:hover {
+  cursor: pointer;
+  color: rgb(1, 128, 247);
+}
+
+.trashIcon:hover {
+  cursor: pointer;
+  color: rgb(222, 32, 32);
+}
+
+.title_input_container {
+  margin-bottom: 10px;
+}
+
+.content_input_container {
+  margin-bottom: 10px;
+}
