@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" ",
-    "build": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" ",
+    "build": "react-scripts build",
     "dev": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" "
   },
   "eslintConfig": {
