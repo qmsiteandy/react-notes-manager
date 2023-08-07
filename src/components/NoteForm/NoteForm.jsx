@@ -2,13 +2,27 @@ import s from "./style.module.css";
 import { useState } from "react";
 import { PenFill, TrashFill } from "react-bootstrap-icons";
 import { ButtonPrimary } from "components/ButtomPrimary/ButtonPrimary";
+import { ErrorMsg } from "components/ErrorMsg/ErrorMsg";
+import { FormValidator } from "services/formValidator";
 
 export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
   const [formValues, setFormValues] = useState({ title: "", content: "" });
+  const [inputErrors, setInputErrors] = useState({
+    titleError: "",
+    contentError: "",
+  });
 
   function updateFormValue(e) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
-    console.log(formValues);
+  }
+
+  function formValidate(formValues) {
+    const titleError = FormValidator.min(formValues.title, 3);
+    const contentError = FormValidator.max(formValues.content, 1000);
+    setInputErrors({ titleError, contentError });
+    const isPass = titleError === "" && contentError === "";
+    console.log("ispass", isPass);
+    return isPass;
   }
 
   return (
@@ -36,6 +50,7 @@ export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
           className="form-control"
           onChange={updateFormValue}
         />
+        {inputErrors.titleError && <ErrorMsg msg={inputErrors.titleError} />}
       </div>
       <div className={s.content_input_container}>
         <label className="form-label">Content</label>
@@ -46,9 +61,16 @@ export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
           className="form-control"
           onChange={updateFormValue}
         />
+        {inputErrors.contentError && (
+          <ErrorMsg msg={inputErrors.contentError} />
+        )}
       </div>
       {onSubmit && (
-        <ButtonPrimary onClick={() => onSubmit(formValues)}>
+        <ButtonPrimary
+          onClick={() => {
+            formValidate(formValues) && onSubmit(formValues);
+          }}
+        >
           Submit
         </ButtonPrimary>
       )}
