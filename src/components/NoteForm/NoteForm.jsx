@@ -31,6 +31,7 @@ export function NoteForm({
     const contentError = FormValidator.max(formValues.content, 1000);
     setInputErrors({ titleError, contentError });
     const isPass = titleError === "" && contentError === "";
+    console.log(formValues, titleError, contentError);
     return isPass;
   }
 
