@@ -5,6 +5,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^1.4.0",
+    "concurrently": "^8.2.0",
+    "json-server": "^0.17.3",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.8.4",
     "react-dom": "^18.2.0",
@@ -14,11 +16,11 @@
     "redux-persist": "^6.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" ",
+    "build": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" ",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" "
+    "dev": "npx concurrently \"npx json-server --watch db.json -p 3200\" \"react-scripts start\" "
   },
   "eslintConfig": {
     "extends": [
@@ -37,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.0"
   }
 }
