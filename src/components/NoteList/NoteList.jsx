@@ -8,7 +8,7 @@ export function NoteList() {
   const navigate = useNavigate();
 
   return (
-    <div className={`row justify-content-center ${s.card_list}`}>
+    <div className={`row justify-content-begin ${s.card_list}`}>
       {noteList.map((note) => {
         return (
           <NoteCard
