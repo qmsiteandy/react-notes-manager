@@ -1,11 +1,9 @@
 {
-    "notes":[
-        {
-            "id": 1,
-            "title": "mynote",
-            "content": "Hello World",
-            "created_at":"01/01/2022"
-        }
-
-    ]
+  "notes": [
+    {
+      "title": "HAPPY ",
+      "content": "BIRTHDAY",
+      "id": 3
+    }
+  ]
 }
