@@ -5,7 +5,7 @@ import { store, persistor } from "./store";
 import { App } from "App";
 import { StrictMode } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Note } from "layouts/Note/Note";
+import { NotePage } from "layouts/Note/NotePage";
 import { NoteBrowse } from "layouts/NoteBrowse/NoteBrowse";
 import { NoteCreate } from "layouts/NoteCreate/NoteCreate";
 import { PageNotFound } from "layouts/PageNotFound/PageNotFound";
@@ -21,7 +21,7 @@ root.render(
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="/" element={<NoteBrowse />} />
-              <Route path="/note/:id" element={<Note />} />
+              <Route path="/note/:id" element={<NotePage />} />
               <Route path="/note/create" element={<NoteCreate />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>

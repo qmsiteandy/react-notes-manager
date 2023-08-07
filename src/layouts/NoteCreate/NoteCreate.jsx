@@ -19,11 +19,6 @@ export function NoteCreate(props) {
   }
 
   return (
-    <NoteForm
-      title={"Add Note"}
-      // onClickEdit={() => alert("edit")}
-      // onClickDelete={() => alert("delete")}
-      onSubmit={submitCreate}
-    />
+    <NoteForm isEditable={true} title={"Add Note"} onSubmit={submitCreate} />
   );
 }

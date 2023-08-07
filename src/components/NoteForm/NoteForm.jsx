@@ -5,7 +5,14 @@ import { ButtonPrimary } from "components/ButtomPrimary/ButtonPrimary";
 import { ErrorMsg } from "components/ErrorMsg/ErrorMsg";
 import { FormValidator } from "services/formValidator";
 
-export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
+export function NoteForm({
+  isEditable,
+  title,
+  note,
+  onClickEdit,
+  onClickDelete,
+  onSubmit,
+}) {
   const [formValues, setFormValues] = useState({ title: "", content: "" });
   const [inputErrors, setInputErrors] = useState({
     titleError: "",
@@ -25,6 +32,39 @@ export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
     return isPass;
   }
 
+  const titleInput = () => {
+    return (
+      <>
+        <label className="form-label">Title</label>
+        <input
+          type="text"
+          name="title"
+          className="form-control"
+          onChange={updateFormValue}
+        />
+        {inputErrors.titleError && <ErrorMsg msg={inputErrors.titleError} />}
+      </>
+    );
+  };
+
+  const contentInput = () => {
+    return (
+      <>
+        <label className="form-label">Content</label>
+        <textarea
+          type="text"
+          name="content"
+          rows="5"
+          className="form-control"
+          onChange={updateFormValue}
+        />
+        {inputErrors.contentError && (
+          <ErrorMsg msg={inputErrors.contentError} />
+        )}
+      </>
+    );
+  };
+
   return (
     <div className={s.container}>
       <div className="row justify-content-space-between">
@@ -43,27 +83,10 @@ export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
         </div>
       </div>
       <div className={s.title_input_container}>
-        <label className="form-label">Title</label>
-        <input
-          type="text"
-          name="title"
-          className="form-control"
-          onChange={updateFormValue}
-        />
-        {inputErrors.titleError && <ErrorMsg msg={inputErrors.titleError} />}
+        {isEditable ? titleInput() : ""}
       </div>
       <div className={s.content_input_container}>
-        <label className="form-label">Content</label>
-        <textarea
-          type="text"
-          name="content"
-          rows="5"
-          className="form-control"
-          onChange={updateFormValue}
-        />
-        {inputErrors.contentError && (
-          <ErrorMsg msg={inputErrors.contentError} />
-        )}
+        {isEditable ? contentInput() : note.content}
       </div>
       {onSubmit && (
         <ButtonPrimary
