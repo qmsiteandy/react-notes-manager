@@ -30,7 +30,12 @@ export function NoteForm({ title, onClickEdit, onClickDelete, onSubmit }) {
       </div>
       <div className={s.title_input_container}>
         <label className="form-label">Title</label>
-        <input type="text" name="title" className="form-control" />
+        <input
+          type="text"
+          name="title"
+          className="form-control"
+          onChange={updateFormValue}
+        />
       </div>
       <div className={s.content_input_container}>
         <label className="form-label">Content</label>
