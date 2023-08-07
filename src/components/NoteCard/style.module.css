@@ -16,6 +16,10 @@
   justify-content: space-between;
 }
 
+.deleteIcon {
+  color: rgba(167, 167, 167, 0.373);
+}
+
 .deleteIcon:hover {
   color: #ff7373;
 }

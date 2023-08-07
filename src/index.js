@@ -5,7 +5,7 @@ import { store, persistor } from "./store";
 import { App } from "App";
 import { StrictMode } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NotePage } from "layouts/Note/NotePage";
+import { NotePage } from "layouts/NotePage/NotePage";
 import { NoteBrowse } from "layouts/NoteBrowse/NoteBrowse";
 import { NoteCreate } from "layouts/NoteCreate/NoteCreate";
 import { PageNotFound } from "layouts/PageNotFound/PageNotFound";

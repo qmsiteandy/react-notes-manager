@@ -1,6 +1,5 @@
-import { useState } from "react";
 import s from "./style.module.css";
-import { Trash as TrashIcon } from "react-bootstrap-icons";
+import { TrashFill as TrashIcon } from "react-bootstrap-icons";
 
 export function NoteCard({ title, subtitle, content, onClick, onClickDelete }) {
   function onClickDelete_(e) {

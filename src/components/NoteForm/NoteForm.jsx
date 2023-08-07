@@ -14,8 +14,8 @@ export function NoteForm({
   onSubmit,
 }) {
   const [formValues, setFormValues] = useState({
-    title: note?.title,
-    content: note?.content,
+    title: note?.title || "",
+    content: note?.content || "",
   });
   const [inputErrors, setInputErrors] = useState({
     titleError: "",
@@ -31,7 +31,6 @@ export function NoteForm({
     const contentError = FormValidator.max(formValues.content, 1000);
     setInputErrors({ titleError, contentError });
     const isPass = titleError === "" && contentError === "";
-    // console.log("ispass", isPass);
     return isPass;
   }
 

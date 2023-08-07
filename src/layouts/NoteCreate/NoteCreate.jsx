@@ -9,7 +9,6 @@ export function NoteCreate(props) {
   const navigate = useNavigate();
 
   async function submitCreate(formValue) {
-    console.log("submitCreate");
     const result = await NoteAPI.create({
       ...formValue,
       created_at: new Date().toLocaleDateString(),

@@ -1,13 +1,16 @@
 import { useParams } from "react-router-dom";
-import { useSelector, dispatch, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NoteAPI } from "api/note-api";
 import { NoteForm } from "components/NoteForm/NoteForm";
-import { updateNote } from "store/notes/note-slice";
+import { updateNote, deleteNoteId } from "store/notes/note-slice";
 
 export function NotePage(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const note = useSelector((store) =>
     store.NOTE.noteList.find((note) => note.id === parseInt(id))
   );
@@ -19,6 +22,14 @@ export function NotePage(props) {
     setIsEditable(false);
   };
 
+  const submitDelete = async (noteId) => {
+    if (window.confirm("確認刪除?")) {
+      await NoteAPI.deleteById(noteId);
+      dispatch(deleteNoteId(noteId));
+      navigate("/");
+    }
+  };
+
   return (
     <>
       {note && (
@@ -27,7 +38,7 @@ export function NotePage(props) {
           title={note.title}
           note={note}
           onClickEdit={() => setIsEditable(!isEditable)}
-          onClickDelete={() => alert("delete")}
+          onClickDelete={() => submitDelete(note.id)}
           onSubmit={submitUpdate}
         />
       )}
