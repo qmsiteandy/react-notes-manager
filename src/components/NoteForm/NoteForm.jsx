@@ -13,7 +13,10 @@ export function NoteForm({
   onClickDelete,
   onSubmit,
 }) {
-  const [formValues, setFormValues] = useState({ title: "", content: "" });
+  const [formValues, setFormValues] = useState({
+    title: note?.title,
+    content: note?.content,
+  });
   const [inputErrors, setInputErrors] = useState({
     titleError: "",
     contentError: "",
@@ -28,7 +31,7 @@ export function NoteForm({
     const contentError = FormValidator.max(formValues.content, 1000);
     setInputErrors({ titleError, contentError });
     const isPass = titleError === "" && contentError === "";
-    console.log("ispass", isPass);
+    // console.log("ispass", isPass);
     return isPass;
   }
 
@@ -39,6 +42,7 @@ export function NoteForm({
         <input
           type="text"
           name="title"
+          value={formValues.title}
           className="form-control"
           onChange={updateFormValue}
         />
@@ -55,6 +59,7 @@ export function NoteForm({
           type="text"
           name="content"
           rows="5"
+          value={formValues.content}
           className="form-control"
           onChange={updateFormValue}
         />
@@ -94,7 +99,7 @@ export function NoteForm({
         <div className="col-12 col-sm-10">
           <h2 className={s.title}>{title}</h2>
         </div>
-        {isEditable ? "" : actionIcons()}
+        {actionIcons()}
       </div>
       <div className={s.title_input_container}>
         {isEditable ? titleInput() : ""}
@@ -102,7 +107,7 @@ export function NoteForm({
       <div className={s.content_input_container}>
         {isEditable ? contentInput() : <pre>{note.content}</pre>}
       </div>
-      {onSubmit && (
+      {onSubmit && isEditable && (
         <ButtonPrimary
           onClick={() => {
             formValidate(formValues) && onSubmit(formValues);
