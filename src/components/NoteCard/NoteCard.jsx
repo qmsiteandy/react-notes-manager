@@ -20,7 +20,9 @@ export function NoteCard({ title, subtitle, content, onClick, onClickDelete }) {
           />
         </div>
         <h6 className="card-subtitle mb-2 text-body-secondary">{subtitle}</h6>
-        <p className={`card-text ${s.text_content}`}>{content}</p>
+        <p className={`card-text ${s.text_content}`}>
+          <pre>{content}</pre>
+        </p>
       </div>
     </div>
   );
