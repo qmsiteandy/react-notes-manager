@@ -1,14 +1,24 @@
 import s from "./style.module.css";
 import { NoteCard } from "components/NoteCard/NoteCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { NoteAPI } from "api/note-api";
+import { deleteNoteId } from "store/notes/note-slice";
 
 export function NoteList() {
-  const noteList = useSelector((store) => store.noteSlice.noteList);
+  const noteList = useSelector((store) => store.NOTE.noteList);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const submitDelete = async (noteId) => {
+    if (window.confirm("確認刪除?")) {
+      await NoteAPI.deleteById(noteId);
+      dispatch(deleteNoteId(noteId));
+    }
+  };
 
   return (
-    <div className={`row justify-content-center ${s.card_list}`}>
+    <div className={`row justify-content-begin ${s.card_list}`}>
       {noteList.map((note) => {
         return (
           <NoteCard
@@ -18,7 +28,7 @@ export function NoteList() {
             content={note.content}
             onClick={() => navigate("/note/" + note.id)}
             onClickDelete={() => {
-              alert("Delete note id: " + note.id);
+              submitDelete(note.id);
             }}
           />
         );

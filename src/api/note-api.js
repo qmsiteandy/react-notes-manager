@@ -3,7 +3,7 @@ const BASE_URL = "http://localhost:3200/notes";
 
 export class NoteAPI {
   static async create(note) {
-    return (await axios.post(`${BASE_URL}/create`, note)).data;
+    return (await axios.post(`${BASE_URL}`, note)).data;
   }
 
   static async fetchAll() {
@@ -14,8 +14,9 @@ export class NoteAPI {
     return (await axios.get(`${BASE_URL}/${noteId}`)).data;
   }
 
-  static async updateById(note) {
-    return (await axios.put(`${BASE_URL}/${note.id}`, note)).data;
+  static async updateById(noteId, note) {
+    console.log("updateById", noteId, note);
+    return (await axios.put(`${BASE_URL}/${noteId}`, note)).data;
   }
 
   static async deleteById(noteId) {

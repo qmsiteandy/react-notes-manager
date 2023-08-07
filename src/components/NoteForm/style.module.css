@@ -1,0 +1,28 @@
+.container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 1px 3px 4px rgba(97, 97, 97, 0.5);
+}
+
+.icon {
+  color: rgb(167, 167, 167);
+}
+
+.penIcon:hover {
+  cursor: pointer;
+  color: rgb(1, 128, 247);
+}
+
+.trashIcon:hover {
+  cursor: pointer;
+  color: rgb(222, 32, 32);
+}
+
+.title_input_container {
+  margin-bottom: 10px;
+}
+
+.content_input_container {
+  margin-bottom: 10px;
+}
